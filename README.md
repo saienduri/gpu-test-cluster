@@ -41,7 +41,7 @@ The runner scale set utilizes the Horizontal Pod Autoscaler (HPA) to scale runne
 
 More detailed setup details can be found here: https://github.com/saienduri/AKS-GitHubARC-Setup/blob/main/README.md
 
-## Questions to Consider
+## Getting Started
 
 This architecture leads to a few questions to consider for preparing our cluster for any GitHub Repository
 
@@ -67,7 +67,7 @@ workflow
 3. How many cpu cores should be allocated for each runner?
 4. What should be the minimum and maximum size of the scale set?
 
-To answer 4, it is important to conisder how long jobs that run on this cluster take and the frequency of these jobs.
+To answer 4, it is important to consider how long jobs that run on this cluster take and the frequency of these jobs.
 
 
 
