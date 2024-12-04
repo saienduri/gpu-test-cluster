@@ -47,18 +47,8 @@ This architecture leads to a few questions to consider for preparing our cluster
 
 ### Authentication
 
-To create the connection so that our cluster can communicate with a GitHub Repository and register a runner scale set, the setup requires a GitHub PAT with the following permissions:
-
-```
-repo (all)
-admin:org (all) (mandatory for organization-wide runner)
-admin:enterprise (all) (mandatory for enterprise-wide runner)
-admin:public_key - read:public_key
-admin:repo_hook - read:repo_hook
-admin:org_hook
-notifications
-workflow
-```
+To create the connection so that our cluster can communicate with a GitHub Repository and register a runner scale set, the setup requires a GitHub PAT or GitHub App.
+More details along with permission scope requirements can be found here: https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/authenticating-to-the-github-api
 
 ### GitHub Runner Requirements
 
