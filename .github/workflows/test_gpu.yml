@@ -30,8 +30,8 @@ jobs:
         with:
           python-version: 3.11
 
-      # Test pytorch rocm
-      - name: "pytorch rocm test"
+      # Test rocm
+      - name: "rocm test"
         run: |
           ls -a /home/runner
           ls -a /etc/podinfo
@@ -42,16 +42,14 @@ jobs:
             DEVICE_FLAG="--device /dev/dri"
           fi
           echo $DEVICE_FLAG
-          echo "TEST"
-          echo ${GHA_RENDER_DEVICES}
-          python3.11 -m venv test_venv
-          source test_venv/bin/activate
-          pip3 install --force-reinstall --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm6.2
-          python3.11 -c "import torch; print('CUDA available:', torch.cuda.is_available())"
-          echo $GHA_RENDER_DEVICES
+          docker pull rocm/dev-ubuntu-22.04:6.3
+          docker run -dt --network=host --device=/dev/kfd --device=/dev/dri \
+            --group-add video --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
+            --name ci_container_test \
+            rocm/dev-ubuntu-22.04:6.3
 
       # Test rocm commands
       - name: "Test rocm commands"
         run: |
-          rocm-smi
-          rocminfo
+          docker exec ci_container_test rocm-smi
+          docker exec ci_container_test rocminfo
