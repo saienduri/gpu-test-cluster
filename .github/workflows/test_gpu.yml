@@ -42,6 +42,8 @@ jobs:
             DEVICE_FLAG="--device /dev/dri"
           fi
           echo $DEVICE_FLAG
+          echo "TEST"
+          echo ${GHA_RENDER_DEVICES}
           python3.11 -m venv test_venv
           source test_venv/bin/activate
           pip3 install --force-reinstall --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm6.2
