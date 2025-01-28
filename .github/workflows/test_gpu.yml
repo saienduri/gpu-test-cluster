@@ -35,6 +35,7 @@ jobs:
         run: |
           ls -a /home/runner
           ls -a /etc/podinfo
+          cat /etc/podinfo/gha-render-devices
           env
           python3.11 -m venv test_venv
           source test_venv/bin/activate
