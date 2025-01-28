@@ -20,7 +20,7 @@ concurrency:
 jobs:
   test-gpu:
     name: "Test AMD GPU Cluster"
-    runs-on: linux-mi300-gpu-1
+    runs-on: linux-mi300
     steps:
       - name: "Checking out repository"
         uses: actions/checkout@v4
