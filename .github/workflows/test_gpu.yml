@@ -34,6 +34,7 @@ jobs:
       - name: "pytorch rocm test"
         run: |
           ls -a /home/runner
+          ls -a /etc/podinfo
           env
           python3.11 -m venv test_venv
           source test_venv/bin/activate
