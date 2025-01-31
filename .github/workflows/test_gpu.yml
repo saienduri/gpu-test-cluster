@@ -42,6 +42,9 @@ jobs:
             DEVICE_FLAG="--device /dev/dri"
           fi
           echo $DEVICE_FLAG
+          cd /home/runner/docker-data
+          ls
+          df -h
           docker login -u rocmshared -p ${{ secrets.DOCKER_ROCM }}
           docker pull rocm/dev-ubuntu-22.04:6.3
           docker run -dt --network=host --device=/dev/kfd $DEVICE_FLAG \
@@ -52,9 +55,5 @@ jobs:
       # Test rocm commands
       - name: "Test rocm commands"
         run: |
-          sudo su
-          sudo cd /home/runner/docker-data
-          ls
-          df -h
           docker exec ci_container_test rocm-smi
           docker exec ci_container_test rocminfo
