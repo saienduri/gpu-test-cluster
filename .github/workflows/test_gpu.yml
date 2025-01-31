@@ -42,9 +42,6 @@ jobs:
             DEVICE_FLAG="--device /dev/dri"
           fi
           echo $DEVICE_FLAG
-          sudo su
-          cd /home/runner/docker-data
-          ls
           df -h
           docker login -u rocmshared -p ${{ secrets.DOCKER_ROCM }}
           docker pull rocm/dev-ubuntu-22.04:6.3
