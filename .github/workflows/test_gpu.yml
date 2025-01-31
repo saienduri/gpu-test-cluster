@@ -42,6 +42,7 @@ jobs:
             DEVICE_FLAG="--device /dev/dri"
           fi
           echo $DEVICE_FLAG
+          sudo su
           cd /home/runner/docker-data
           ls
           df -h
