@@ -52,7 +52,9 @@ jobs:
       # Test rocm commands
       - name: "Test rocm commands"
         run: |
-          cd /home/runner/docker-data
+          sudo su
+          sudo cd /home/runner/docker-data
+          ls
           df -h
           docker exec ci_container_test rocm-smi
           docker exec ci_container_test rocminfo
