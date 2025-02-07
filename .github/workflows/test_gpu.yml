@@ -46,6 +46,7 @@ jobs:
           echo "DATA TRACK"
           cd /home/runner/docker-data
           ls
+          du -ah | sort -hr | head -n 10
           docker login -u rocmshared -p ${{ secrets.DOCKER_ROCM }}
           docker pull rocm/dev-ubuntu-22.04:6.3
           docker run -dt --network=host --device=/dev/kfd $DEVICE_FLAG \
