@@ -44,7 +44,7 @@ jobs:
           echo $DEVICE_FLAG
           df -h
           echo "DATA TRACK"
-          cd /home/runner/docker-data
+          sudo cd /home/runner/docker-data
           ls
           docker login -u rocmshared -p ${{ secrets.DOCKER_ROCM }}
           docker pull rocm/dev-ubuntu-22.04:6.3
