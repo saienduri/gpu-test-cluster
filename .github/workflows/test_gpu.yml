@@ -31,9 +31,6 @@ jobs:
           python-version: 3.11
 
       # Test rocm
-      - name: "rocm test"
+      - name: "docker test"
         run: |
-          cd /mnt/data/docker
-          ls
-          docker login -u rocmshared -p ${{ secrets.DOCKER_ROCM }}
-          docker pull rocm/dev-ubuntu-22.04:6.3
+          docker images
