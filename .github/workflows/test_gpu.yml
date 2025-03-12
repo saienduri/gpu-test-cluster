@@ -33,4 +33,6 @@ jobs:
       # Test rocm
       - name: "docker test"
         run: |
-          docker images
+          docker pull ghcr.io/saienduri/rocm-dev:main
+          sudo docker save -o ~/docker-data/rocm-test/test_image.tar ghcr.io/saienduri/rocm-dev:main
+          sudo rclone copy -P --s3-upload-concurrency 64 --s3-chunk-size 200M --s3-upload-cutoff 300M ~/docker-data/rocm-test/test_image.tar oci:pytorchbucket0002/rocm_test --progress
