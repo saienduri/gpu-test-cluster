@@ -4,9 +4,8 @@
 # See https://llvm.org/LICENSE.txt for license information.
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
-name: Test GPU
+name: ARC Runner Basic Test
 on:
-  pull_request:
   workflow_dispatch:
 
 concurrency:
@@ -18,29 +17,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test-gpu:
-    name: "Test AMD GPU Cluster"
-    runs-on: linux-mi300-gpu-1
+  test-arc:
+    name: "Basic GPU Test for ARC Runner Validation"
+    runs-on: linux-mi300-1gpu-ossci-gitops
     steps:
       - name: "Checking out repository"
         uses: actions/checkout@v4
-      
-      - name: "Setting up Python"
-        uses: actions/setup-python@75f3110429a8c05be0e1bf360334e4cced2b63fa # v2.3.3
-        with:
-          python-version: 3.11
 
-      # Test pytorch rocm
-      - name: "pytorch rocm test"
-        run: |
-          cd /home/runner/docker-data
-          ls -l
-          python3.11 -m venv test_venv
-          source test_venv/bin/activate
-          pip3 install --force-reinstall --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm6.2
-          python3.11 -c "import torch; print('CUDA available:', torch.cuda.is_available())"
-
-      # Test rocm commands
       - name: "Test rocm commands"
         run: |
           rocm-smi
